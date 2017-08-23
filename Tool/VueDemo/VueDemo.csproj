@@ -62,9 +62,11 @@
     <Content Include="Example.html" />
     <Content Include="Index.html" />
     <Content Include="JS\Example.js" />
+    <Content Include="JS\mubanyufa.js" />
     <Content Include="JS\Index.js" />
     <Content Include="Scripts\vue.js" />
     <Content Include="Web.config" />
+    <Content Include="mubanyufa.html" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
