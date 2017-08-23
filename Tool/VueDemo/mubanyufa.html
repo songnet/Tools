@@ -13,6 +13,10 @@
     <div v-html="msg" id="app-1">
         {{ msg }}
     </div>
+    <button id="app-3" v-bind:disabled="isButtonDisabled">Button</button>
+    <div v-bind:id="'div-'+id" class="app-4">
+        {{ id }}
+    </div>
 </body>
 </html>
 <script src="JS/mubanyufa.js"></script>
