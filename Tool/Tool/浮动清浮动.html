@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div style="width:32px">
+        <div style="float:right">第一个</div>
+        <div style="">第二个</div>
+        <div style="float:right">第一个</div>
+        <div style="">第二个</div>
+        <div style="float:right">第一个</div>
+        <div style="">第二个</div>
+        <div style="float:right">第一个</div>
+        <div style="">第二个</div>
+    </div>
+</body>
+</html>
+<script src="Scripts/bootstrap-3.3.4-dist/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+
+    })
+
+    function fun(n, o) {
+        alert(o)
+        return {
+            fun: function (m) {
+                return fun(m, n);
+            }
+        }
+    }
+
+
+</script>

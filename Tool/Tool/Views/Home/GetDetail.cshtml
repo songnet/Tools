@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "GetDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Scripts/bootstrap-3.3.4-dist/css/bootstrap.css" rel="stylesheet" />
+<link href="~/Scripts/bootstrap-3.3.4-dist/css/bootstrap-theme.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-3.3.4-dist/js/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap-3.3.4-dist/js/bootstrap.js"></script>
+<script type="text/javascript">
+
+    var ndtable = "";
+    var wftable = "";
+    var ndlist;
+    var wflist;
+    var txtlength;
+    var wfbh;
+    $(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/Home/GetDetailInfo',
+            data: { TextId: getQueryString("TextId"), tablename: getQueryString("tablename") },
+            dataType: "json",
+            success: function (result) {
+                var ndlength;
+                var wflength;
+                if (result != null) {
+                    wfbh = result.wfText;
+                    $('#ndTotalCopyPercent').html("南大相似性列表，总相似比：" + result.nddata.TotalCopyPercent);
+                    $('#wfTotalCopyPercent').html("万方相似性列表，总相似比：" + result.wfdata.TotalCopyPercent / 100);
+                    ndlist = JSON.parse(result.nddata.Json);
+                    wflist = JSON.parse(result.wfdata.Json);
+                    ndlength = result.txt.length;
+                    wflength = wfbh.length;
+                    //console.log(result.txt);
+                    console.log(ndlist);
+                    console.log(wflist);
+
+                    //万方全文
+                    if (wflist.HitDetailInfoList.length > 0) {
+                        //带标红的全文
+                        $.each(wflist.HitDetailInfoList.reverse(), function (index, row) {
+                            var preString = wfbh.substr(0, row.BeginPosition);
+                            var middleString = wfbh.substr(row.BeginPosition, row.Length);
+                            var subString = wfbh.substr(row.BeginPosition + row.Length);
+                            wfbh = preString + '<span style="color:red;">' + middleString + '</span>' + subString;
+                        });
+                    }
+
+                    if (wflist.HitDetailInfoList.length > 0) {
+                        //万方列表
+                        $.each(wflist.HitDetailInfoList, function (index, row) {
+                            wftable = wftable + "<tr class='inbox'><td><span style='color:red;'>" +
+                                row.HitText + "</span></td></tr>";
+
+                        })
+                    }
+
+                    //南大全文
+                    if (ndlist.hitDetailInfoListField.length > 0) {
+                        //带标红的全文
+                        $.each(ndlist.hitDetailInfoListField.reverse(), function (index, row) {
+                            var preString = result.txt.substr(0, row.beginPositionField);
+                            var middleString = result.txt.substr(row.beginPositionField, row.lengthField);
+                            var subString = result.txt.substr(row.beginPositionField + row.lengthField);
+                            result.txt = preString + '<span style="color:red;">' + middleString + '</span>' + subString;
+                        });
+                    }
+
+                    if (ndlist.hitDetailInfoListField.length > 0) {
+                        //南大列表
+                        $.each(ndlist.hitDetailInfoListField.reverse(), function (index, row) {
+                            ndtable = ndtable + "<tr class='inbox'><td><span style='color:red;'>" +
+                                row.hitTextField + "</span></td></tr>";
+
+                        })
+                    }
+
+                    $('#wfyuanwen').html(wfbh);
+                    $('#wftitle').html('万方原文,总字数:' + wflength);
+                    $("#wftable").append(wftable);
+                    $("#ndtable").append(ndtable);
+                    $('#ndyuanwen').html(result.txt);
+                    $('#ndtitle').html('南大原文,总字数:' + ndlength);
+                }
+                else {
+                    alert("此GUID下没有检测数据！");
+                }
+            }
+        })
+
+    })
+
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+</script>
+<body class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="wftitle"></h3>
+                </div>
+                <div class="panel-body" id="wfyuanwen">
+
+                </div>
+                @*<div class="panel-footer"></div>*@
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="wfTotalCopyPercent"></h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table" id="wftable"></table>
+                </div>
+                @*<div class="panel-footer" id="wfTotalCopyPercent">Panel footer</div>*@
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="ndtitle"></h3>
+                </div>
+                <div class="panel-body" id="ndyuanwen">
+
+                </div>
+                @*<div class="panel-footer"></div>*@
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="ndTotalCopyPercent"></h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table" id="ndtable"></table>
+                </div>
+                @*<div class="panel-footer" id="ndTotalCopyPercent"></div>*@
+            </div>
+        </div>
+    </div>
+</body>

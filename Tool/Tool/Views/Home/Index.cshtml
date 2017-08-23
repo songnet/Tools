@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Scripts/bootstrap-3.3.4-dist/css/bootstrap.css" rel="stylesheet" />
+<link href="~/Scripts/bootstrap-3.3.4-dist/css/bootstrap-theme.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-3.3.4-dist/js/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap-3.3.4-dist/js/bootstrap.js"></script>
+<script type="text/javascript">
+
+    var tablename = "";
+
+    $(function () {
+        tablename = $('#seldb').val();
+        GetList(tablename);
+        $('#seldb').on('change', function () {
+
+            GetList($('#seldb').val());
+        })
+    })
+
+    function GetList(tablename) {
+        var list = "";
+        $('#textlist').empty();
+        $.ajax({
+            type: 'POST',
+            url: '/Home/GetTextList',
+            data: { tablename: tablename },
+            dataType: "json",
+            success: function (result) {
+                if (result != null) {
+                    $.each(result, function (idx, obj) {
+                        list = list + '<a href="/Home/GetDetail?TextId=' + obj.TextId + "&tablename=" + tablename + '" class="list-group-item"><h4 class="list-group-item-heading">' + obj.TextId + '</h4><p class="list-group-item-text">' + obj.Content + '</p></a>';
+                    })
+                    $('#textlist').append(list);
+                }
+                else {
+                    $('#textlist').append("无数据"); 
+                }
+
+            }
+        })
+
+    }
+
+</script>
+<div class="top">
+    <h2>工具</h2>
+</div>
+<body class="container">
+    <form class="form-horizontal" id="searchform" role="form">
+        <div class="form-group">
+            <label for="inputPassword" class="col-sm-2 control-label">数据库表</label>
+            <div class="col-sm-10">
+                <select id="seldb" name="seldb" class="form-control">
+                    <option>CheckText_1000</option>
+                    <option>CheckText_5000</option>
+                    <option>CheckText_Problem</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    <div class="list-group" id="textlist">
+        @*<a href="#" class="list-group-item">
+                <h4 class="list-group-item-heading">List group item heading</h4>
+                <p class="list-group-item-text">...</p>
+            </a>*@
+    </div>
+</body>
