@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularDemo", "AngularDemo\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VueDemo", "VueDemo\VueDemo.csproj", "{260E35C9-1B21-4698-822A-99775A54C0FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUploader", "WebUploader\WebUploader.csproj", "{7555C345-787F-4D73-91BF-4DC7DA788717}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{260E35C9-1B21-4698-822A-99775A54C0FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{260E35C9-1B21-4698-822A-99775A54C0FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{260E35C9-1B21-4698-822A-99775A54C0FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7555C345-787F-4D73-91BF-4DC7DA788717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7555C345-787F-4D73-91BF-4DC7DA788717}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7555C345-787F-4D73-91BF-4DC7DA788717}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7555C345-787F-4D73-91BF-4DC7DA788717}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

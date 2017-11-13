@@ -7,10 +7,44 @@
     <link href="Report/Stylesheet1.css" rel="stylesheet" />
     <script src="Report/jquery-1.12.4.js"></script>
     <script src="Report/JavaScript1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            var template = document.getElementById("template");
+            var result = 'var template = document.getElementById("template");';
+            if (template) {
+                if (template.innerHTML) {
+                    result += '<p>template元素可以通过选择器捕获。</p>';
+                    if (template.childNodes.length) {
+                        result += '<p>template被当成了普通元素。</p>';
+                    } else {
+                        result += '<p>template支持，且innerHTML是：<xmp>' + template.innerHTML + '</xmp></p>';
+                        var image = template.content.querySelectorAll("img")[0];
+                        if (image) result += '通过template.content + querySelector(All)获取子元素';
+                    }
+                } else {
+                    result += '<p>template是未知元素。</p>';
+                }
+            } else {
+                result += '<p>template元素不存在。</p>';
+            }
+            document.getElementById("result").innerHTML = result;
+
+        })
+
+    </script>
+    <style>
+        template { display: block; height: 300px; background-color: #eee; }
+    </style>
 </head>
 <body>
     <div class="div1">
 
     </div>
+    <template id="template">
+        <p>如果你看得见我和下面的图片，说明不支持template元素。</p>
+        <p><img src="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg"></p>
+    </template>
+    <div id="result" class="result"></div>
 </body>
 </html>
