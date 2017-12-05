@@ -60,16 +60,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="example.html" />
-    <Content Include="jquery-1.12.4.js" />
-    <Content Include="Uploader.swf" />
+    <Content Include="Scripts\jquery-1.12.4.js" />
+    <Content Include="Scripts\WebUploader\Uploader.swf" />
     <Content Include="Web.config" />
-    <Content Include="webuploader.css" />
-    <Content Include="webuploader.js" />
+    <Content Include="Scripts\WebUploader\webuploader.css" />
+    <Content Include="Scripts\WebUploader\webuploader.js" />
+    <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UploaderHandler.ashx.cs">
       <DependentUpon>UploaderHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

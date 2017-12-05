@@ -21,6 +21,10 @@ namespace WebUploader
             {
                 context.Response.End();
             }
+
+            var formData = context.Request["formData"];
+
+
             SaveFile();
         }
 
@@ -56,6 +60,11 @@ namespace WebUploader
             files[0].SaveAs(full);
             var _result = "{\"jsonrpc\" : \"2.0\", \"result\" : null, \"id\" : \"" + name + "\"}";
             System.Web.HttpContext.Current.Response.Write(_result);
+        }
+
+        public class formData {
+            public string name { get; set; }
+            public string desc { get; set; }
         }
 
         public bool IsReusable
