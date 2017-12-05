@@ -40,6 +40,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CheckUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\CheckUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.5.0, Culture=neutral, PublicKeyToken=9dea7c6e17aa31ff, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -60,6 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="example.html" />
+    <Content Include="Libs\CheckUtils.dll" />
+    <Content Include="Libs\ICSharpCode.SharpZipLib.dll" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\WebUploader\Uploader.swf" />
     <Content Include="Web.config" />
